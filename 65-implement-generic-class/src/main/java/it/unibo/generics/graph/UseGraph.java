@@ -1,6 +1,7 @@
 package it.unibo.generics.graph;
 
 import it.unibo.generics.graph.api.Graph;
+import it.unibo.generics.graph.impl.GraphImpl;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -22,7 +23,7 @@ public final class UseGraph {
         /*
          * Test your graph implementation(s) by calling testGraph
          */
-        testGraph(null);
+        testGraph(new GraphImpl<>());
     }
 
     private static void testGraph(final Graph<String> graph) {
@@ -48,11 +49,14 @@ public final class UseGraph {
         /*
          * Either the path b,c,a or b,c,d,e,a
          */
+
+        //System.out.println("TEST BY ME: " + graph.getPath("a", "e").toString());
         assertIsAnyOf(
             graph.getPath("b", "a"),
             Arrays.asList(splitOnWhiteSpace("b c a")),
             Arrays.asList(splitOnWhiteSpace("b c d e a"))
         );
+        
     }
 
     private static void assertIsAnyOf(final Object actual, final Object... valid) {
